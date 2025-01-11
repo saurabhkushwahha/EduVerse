@@ -15,7 +15,7 @@ function ButtonTheme() {
     setTheme(newTheme)
   }
   return (
-    <Button className='rounded-full fixed px-3 py-4 top-2 right-4 ' onClick={toogleTheme}>
+    <Button className='z-50 rounded-full fixed px-3 py-4 bottom-5 right-10 ' onClick={toogleTheme}>
       { theme=='light' ? <MoonIcon/> : <SunIcon/>}
     </Button>
   )

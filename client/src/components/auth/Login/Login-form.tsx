@@ -54,6 +54,7 @@ export default function LoginForm({
                 <Label htmlFor="role">Role</Label>
                 <select
                   id="role"
+                  value={formData.role}
                   className="block w-full  px-3 py-2 border  dark:bg-white dark:text-gray-800 rounded-md shadow-sm  sm:text-sm"
                   onChange={(e) => setFormData({ ...formData, [e.target.id]: e.target.value })}
                   required

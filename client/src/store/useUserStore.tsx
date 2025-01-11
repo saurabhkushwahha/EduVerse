@@ -5,10 +5,10 @@ export const useUserStore = create((set,_get)=>({
 
 
   // variable
-  user:false,
+  user:true,
   isLoading:false,
   isError:false,
-
+  role:"teacher",
 
   // function
 

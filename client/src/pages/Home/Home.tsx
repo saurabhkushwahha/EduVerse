@@ -1,10 +1,21 @@
+import TeacherDashboard from "./TeacherDashboard"
+import { useUserStore } from "@/store/useUserStore"
+import { useNavigate } from "react-router-dom"
+import StudentDashboard from "./StudentDashboard"
 
-function Home() {
-  return (
-    <div className="max-w-screen w-full min-h-screen ">
-         <h1 className="text-4xl">Home</h1>
-    </div>
-  )
+
+export default function Home(){
+  const navigate=useNavigate()
+
+  const {user ,role}=useUserStore()
+  if(!user){
+    navigate("/")
+  }
+  else if(user && role=="teacher"){
+     return <TeacherDashboard/>
+  }
+  else{
+     return <StudentDashboard/>
+  }
+
 }
-
-export default Home
