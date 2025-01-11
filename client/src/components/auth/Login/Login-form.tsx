@@ -11,6 +11,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useState } from "react"
+import { useUserStore } from "@/store/useUserStore"
 
 export default function LoginForm({
   className,
@@ -23,9 +24,10 @@ export default function LoginForm({
     password: '',
   })
 
-  const handleSubmit = (e) => {
+  const { login } = useUserStore();
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO:
+    await login({ ...formData })
     console.log(formData)
   }
   return (
