@@ -5,7 +5,7 @@ export const useUserStore = create((set,_get)=>({
 
 
   // variable
-  user:true,
+  user:false,
   isLoading:false,
   isError:false,
 

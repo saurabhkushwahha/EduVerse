@@ -20,6 +20,7 @@ export default function SignUpForm({
   const [formData,setFormData]=useState({
     username:"",
     email:"",
+    role:'',
     password:"",
   })
 
@@ -59,6 +60,21 @@ export default function SignUpForm({
                   required
                 onChange={(e)=>setFormData({...formData, [e.target.id]:e.target.value})}
                 />
+              </div>
+               <div className="grid gap-2">
+                <Label htmlFor="role">Role</Label>
+                <select
+                  id="role"
+                  className="block w-full  px-3 py-2 border  dark:bg-white dark:text-gray-800 rounded-md shadow-sm  sm:text-sm"
+                  onChange={(e) => setFormData({ ...formData, [e.target.id]: e.target.value })}
+                  required
+                >
+                  <option value="" disabled selected>
+                    Select your role
+                  </option>
+                  <option value="teacher">Teacher</option>
+                  <option value="student">Student</option>
+                </select>
               </div>
               <div className="grid gap-2">
                 <div className="flex items-center">

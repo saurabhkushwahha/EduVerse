@@ -4,7 +4,6 @@ import { Route, Routes, Navigate } from 'react-router-dom'
 import Home from './pages/Home/Home'
 import { useUserStore } from './store/useUserStore'
 import ButtonTheme from './components/theme/ButtonTheme'
-import {SunIcon} from 'lucide-react'
 
 function App() {
   const { user } = useUserStore()
