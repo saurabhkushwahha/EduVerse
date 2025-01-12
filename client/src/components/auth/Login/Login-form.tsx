@@ -11,22 +11,25 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useState } from "react"
+import { useUserStore } from "@/store/useUserStore"
 
 export default function LoginForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
 
-  const [formData,setFormData]=useState({
-     email:'',
-     password:'',
+  const [formData, setFormData] = useState({
+    email: '',
+    role: '',
+    password: '',
   })
 
-   const handleSubmit=(e)=>{
-     e.preventDefault()
-     // TODO:
-     console.log(formData)
-   }
+  const { login } = useUserStore();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    await login({ ...formData })
+    console.log(formData)
+  }
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -46,8 +49,24 @@ export default function LoginForm({
                   type="email"
                   placeholder="m@example.com"
                   required
-                  onChange={(e)=>setFormData({...formData, [e.target.id]:e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, [e.target.id]: e.target.value })}
                 />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="role">Role</Label>
+                <select
+                  id="role"
+                  value={formData.role}
+                  className="block w-full  px-3 py-2 border  dark:bg-white dark:text-gray-800 rounded-md shadow-sm  sm:text-sm"
+                  onChange={(e) => setFormData({ ...formData, [e.target.id]: e.target.value })}
+                  required
+                >
+                  <option value="" disabled selected>
+                    Select your role
+                  </option>
+                  <option value="teacher">Teacher</option>
+                  <option value="student">Student</option>
+                </select>
               </div>
               <div className="grid gap-2">
                 <div className="flex items-center">
@@ -59,7 +78,7 @@ export default function LoginForm({
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" type="password" required onChange={(e)=>setFormData({...formData,[e.target.id]:e.target.value})} />
+                <Input id="password" type="password" required onChange={(e) => setFormData({ ...formData, [e.target.id]: e.target.value })} />
               </div>
               <Button type="submit" className="w-full">
                 Login
